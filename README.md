@@ -4,13 +4,16 @@
 
 ```
 ├── services/
+│   ├── __init__.py
 │   ├── transcription/                 # Speech-to-text service
+│   │   ├── __init__.py
 │   │   ├── pipeline.py                # Main entry point: get_transcription()
 │   │   ├── preprocessor.py            # Audio normalization (mono, 16 kHz, denoise)
 │   │   ├── diarizer.py                # Speaker diarization & timestamp alignment
 │   │   └── requirements.txt
 │   │
 │   ├── analysis/                      # LLM-based analysis service
+│   │   ├── __init__.py
 │   │   ├── pipeline.py                # Main entry point: get_analysis()
 │   │   └── requirements.txt
 │   │
@@ -18,10 +21,12 @@
 │   │   └── __init__.py
 │   │
 │   └── dashboard/                     # Pipeline orchestration & UI
+│       ├── __init__.py
 │       ├── app.py
 │       └── requirements.txt
 │
 ├── shared/
+│   ├── __init__.py
 │   ├── contracts.py                   # Shared data models (STTOutput, Utterance)
 │   └── mock_data/
 │       ├── sample_stt_output.json     # Example transcription output
