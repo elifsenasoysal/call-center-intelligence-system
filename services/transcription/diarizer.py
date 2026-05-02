@@ -8,7 +8,7 @@ load_dotenv()
 
 token = os.getenv("HUGGINGFACE_TOKEN")
 
-def diarize(file_path: str, agent_label: str = "SPEAKER_00", device=None) -> list:
+def diarize(file_path: str, agent_label: str = "SPEAKER_01", device=None) -> list:
     """
     Performs speaker diarization and maps speaker labels to roles.
 
@@ -16,7 +16,7 @@ def diarize(file_path: str, agent_label: str = "SPEAKER_00", device=None) -> lis
         file_path: Path to the audio file.
         agent_label: Pyannote speaker label to treat as "agent".
                      All other speakers are labeled "customer".
-                     Defaults to "SPEAKER_00" (first speaker).
+                     Defaults to "SPEAKER_01" (first speaker).
 
     Returns:
         List of dicts: [{"speaker": "agent"|"customer", "start": float, "end": float}, ...]
@@ -24,7 +24,7 @@ def diarize(file_path: str, agent_label: str = "SPEAKER_00", device=None) -> lis
     # Initialize the diarization pipeline
     pipeline = Pipeline.from_pretrained(
         "pyannote/speaker-diarization-3.1",
-        use_auth_token=token
+        token=token
     )
 
     # move pipeline to device if specified
@@ -33,15 +33,19 @@ def diarize(file_path: str, agent_label: str = "SPEAKER_00", device=None) -> lis
 
     # perform diarization
     diarization = pipeline(file_path, min_speakers=2, max_speakers=2)
+    
+    # pyannote 3.1 returns DiarizeOutput; actual Annotation is in .speaker_diarization
+    annotation = diarization.speaker_diarization
 
     # extract speaker segments
     segments = []
-    for turn, _, speaker in diarization.itertracks(yield_label=True):
+
+    for segment, _, speaker in annotation.itertracks(yield_label=True):
         role = "agent" if speaker == agent_label else "customer" #mapping
         segments.append({
             "speaker": role,
-            "start": turn.start,
-            "end": turn.end
+            "start": segment.start,
+            "end": segment.end
         })
 
     return segments
