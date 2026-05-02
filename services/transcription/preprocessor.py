@@ -8,7 +8,9 @@ def preprocess_audio(file_path: str, output_path: str = None) -> str:
     Normalizes audio to mono 16 kHz and applies noise reduction.
 
     Args:
-        file_path: Path to the raw audio file. (.wav or .mp3)
+        file_path: Path to the raw audio file.
+               Supported formats: .wav, .mp3, .mp4, .m4a, .ogg, .flac
+               (any format supported by ffmpeg)
         output_path: Optional path to save the processed file.
                      If None, saves to data/processed/ with same filename.
 
@@ -50,8 +52,9 @@ def preprocess_audio(file_path: str, output_path: str = None) -> str:
     
     # save cleaned audio
     cleaned_audio.export(output_path, format="wav")
+    # *** For Whisper, format has been set to "wav". ***
 
     # log the output path
-    print(f"Cleaned audio saved to: {output_path}")
+    print(f"[preprocessor] Cleaned audio saved to: {output_path}")
 
     return output_path
