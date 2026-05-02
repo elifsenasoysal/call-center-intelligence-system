@@ -7,19 +7,22 @@
       "speaker": "agent",
       "start_time": 0.0,
       "end_time": 4.2,
-      "text": "Merhaba, nasıl yardımcı olabilirim?"
+      "text": "Merhaba, nasıl yardımcı olabilirim?",
+      "volume_db": -18.5
     },
     {
       "speaker": "customer",
       "start_time": 4.5,
       "end_time": 9.1,
-      "text": "Faturamda hata var, geçen ay fazla çekilmiş."
+      "text": "Faturamda hata var, geçen ay fazla çekilmiş.",
+      "volume_db": -14.2
     },
     {
       "speaker": "agent",
       "start_time": 9.3,
       "end_time": 12.0,
-      "text": "Hesap numaranızı alabilir miyim?"
+      "text": "Hesap numaranızı alabilir miyim?",
+      "volume_db": -17.8
     }
   ]
 }

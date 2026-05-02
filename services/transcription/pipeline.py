@@ -17,7 +17,4 @@ def get_transcription(file_path: str) -> dict:
     Returns:
         dict matching the STTOutput schema defined in shared/contracts.py.
     """
-    # TODO: 1. preprocess audio (normalize, denoise)
-    # TODO: 2. run Whisper STT with word-level timestamps
-    # TODO: 3. run diarization and merge speaker labels
     raise NotImplementedError

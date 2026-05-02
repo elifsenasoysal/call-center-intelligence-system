@@ -7,6 +7,7 @@ class Utterance(BaseModel):
     start_time: float
     end_time: float
     text: str
+    volume_db: float | None = None 
 
 
 class STTOutput(BaseModel):
