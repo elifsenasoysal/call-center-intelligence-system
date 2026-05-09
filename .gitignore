@@ -25,3 +25,6 @@ models/
 Thumbs.db
 
 .ipynb_checkpoints/
+# --- Zehra'nın LLM Çalışma Alanı Eklemeleri ---
+*.safetensors
+services/analysis/models/
