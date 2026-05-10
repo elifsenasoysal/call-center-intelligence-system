@@ -1,0 +1,793 @@
+[
+  {
+    "file_name": "call_001.wav",
+    "language": "tr",
+    "duration_seconds": 81.2,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 4.8,
+        "text": "Merhaba, Union Mobile'a hoş geldiniz. Ben Ella, bugün size yardımcı olabileceğim bir şey var mı?",
+        "volume_db": -16.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 5.2,
+        "end_time": 11.2,
+        "text": "Merhaba Ella, Union Mobile'a arıyorum. Veri hızlarım yavaş geliyor. Neden olmasın, bilmiyorum. Yardım edebilir misiniz?",
+        "volume_db": -16.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 11.7,
+        "end_time": 20.5,
+        "text": "Elbette, Harvey. Size veri hızlarınızla ilgili yardımcı olabilirim. Daha fazla bilgi vermenizi isteyelim. Bu yavaşlama, belirli saatlerde mi oluyor, yoksa belirli saatlerde mi?",
+        "volume_db": -12.5
+      },
+      {
+        "speaker": "customer",
+        "start_time": 21.2,
+        "end_time": 26.6,
+        "text": "Eğilim, video izlemek veya büyük dosyalar indirmek olduğunda oluyor. Geçen hafta kadar süredir böyle oluyor.",
+        "volume_db": -16.7
+      },
+      {
+        "speaker": "agent",
+        "start_time": 27.1,
+        "end_time": 33.4,
+        "text": "Anladım, bu sorunu daha iyi anladım. Birkaç şey kontrol edelim. Size hangi cihazınızı ve yazılım sürümünü bildirmek isteyelim?",
+        "volume_db": -17.6
+      },
+      {
+        "speaker": "customer",
+        "start_time": 33.9,
+        "end_time": 37.5,
+        "text": "Elbette, Samsung Galaxy S21'i kullanıyorum ve Android 11'i çalışıyorum.",
+        "volume_db": -16.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 38.2,
+        "end_time": 48.6,
+        "text": "Teşekkür ederim, bu bilgiyi aldım. Birkaç şey kontrol edelim. (durdum) Her şey, tarafımızdan güncel gibi görünüyor, ancak şu anda bir dolu hücreye bağlısınız. Bu da veri hızlarında yavaşlamaya neden olabilir.",
+        "volume_db": -18.1
+      },
+      {
+        "speaker": "customer",
+        "start_time": 49.4,
+        "end_time": 51.5,
+        "text": "Ah, anladım. Yapılabilecek bir şey var mı?",
+        "volume_db": -19.6
+      },
+      {
+        "speaker": "agent",
+        "start_time": 52.0,
+        "end_time": 61.1,
+        "text": "Evet, aslında var. Size yeni bir plana geçirmek mümkün. Bu plan, öncelikli veri sağlar ve daha yüksek hızlar ve genel bir deneyim sağlar. Bu planı sizin için uygulamak ister misiniz?",
+        "volume_db": -17.0
+      },
+      {
+        "speaker": "customer",
+        "start_time": 61.6,
+        "end_time": 62.7,
+        "text": "Evet, teşekkür ederim!",
+        "volume_db": -11.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 63.4,
+        "end_time": 73.6,
+        "text": "Uyguladım. Hesabınıza yeni planı uyguladım. Hızlarınızın gelişmesini hemen göreceksiniz. Sorun devam ederse, tekrar arayın ve yardımcı olalım. Bugün size yardımcı olabileceğim başka bir şey var mı, Harvey?",
+        "volume_db": -13.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 74.0,
+        "end_time": 76.5,
+        "text": "Hayır, bu benim tek kaygım. Teşekkür ederim, Ella.",
+        "volume_db": -13.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 77.2,
+        "end_time": 80.6,
+        "text": "Rica ederim, Harvey. Yardım etmemi bir zevkti. İyi bir gün dilerim!",
+        "volume_db": -12.4
+      }
+    ]
+  },
+  {
+    "file_name": "call_002.wav",
+    "language": "tr",
+    "duration_seconds": 65.1,
+    "utterances": [
+      {
+        "speaker": "customer",
+        "start_time": 0.0,
+        "end_time": 7.4,
+        "text": "Merhaba, Automated Bill Pay hakkında konuşmak istiyorum. Ödeme bilgilerimin güvenliği için ne tür güvenlik önlemleri aldığınızı öğrenmek istiyorum.",
+        "volume_db": -15.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 8.0,
+        "end_time": 14.8,
+        "text": "Elbette, anlama geldi. Lütfen hesabınızın PIN'i veya hesabınıza bağlı kredi kartının son dört hanesini bana bildirmeyi sağlayın, lütfen.",
+        "volume_db": -15.1
+      },
+      {
+        "speaker": "customer",
+        "start_time": 15.2,
+        "end_time": 24.2,
+        "text": "Um, şunu bilmiyorum. Hesabım PIN'i elimde değil ve kredi kartı numarası son dört hanesini telefon üzerinden paylaşmaya rahatsızım. Diğer bir yol var mı, kimlikimi doğrulamak için?",
+        "volume_db": -17.5
+      },
+      {
+        "speaker": "agent",
+        "start_time": 24.7,
+        "end_time": 44.3,
+        "text": "Tam olarak anladım, Kirsten. Ne yazık ki, hesabınızın güvenliği için birini veya ikincisini doğrulamak zorundayız. Ancak, size bir alternatif çözüm sunabiliriz. Hesabınıza giriş yapın ve güvenli bir şekilde ödeme yapın. Ayrıca, web sitemize gidin ve hesabınıza giriş yapın. Hesabınıza giriş yapın ve ödeme yapın. Ayrıca, herhangi bir sorun yaşarsanız, bize tekrar arayın ve yardımcı olacağız.",
+        "volume_db": -12.5
+      },
+      {
+        "speaker": "customer",
+        "start_time": 44.8,
+        "end_time": 47.7,
+        "text": "Hmm, iyi görünüyor. Web sitesi adresini verebilir misiniz?",
+        "volume_db": -17.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 48.3,
+        "end_time": 57.9,
+        "text": "Elbette, [web sitesi URL'si]. Sağ üst köşedeki \"Giriş\" düğmesine tıklayın ve kullanıcı adınız ve parolanızı girin. Sonra herhangi bir sorun yaşarsanız, bize tekrar arayın ve yardımcı olacağız.",
+        "volume_db": -13.4
+      },
+      {
+        "speaker": "customer",
+        "start_time": 58.7,
+        "end_time": 61.5,
+        "text": "Teşekkür ederim, Davina için yardımda bulunduğunuz için.",
+        "volume_db": -16.5
+      },
+      {
+        "speaker": "agent",
+        "start_time": 62.2,
+        "end_time": 64.3,
+        "text": "Rica ederim, Kirsten. İyi bir gün dileriz.",
+        "volume_db": -16.2
+      }
+    ]
+  },
+  {
+    "file_name": "call_003.wav",
+    "language": "tr",
+    "duration_seconds": 83.6,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 5.2,
+        "text": "Merhaba, Union Mobile'a teşekkür ederim. Ben Dan'ım, bugün size nasıl yardımcı olabileceğimi söyleyeyim?",
+        "volume_db": -17.3
+      },
+      {
+        "speaker": "customer",
+        "start_time": 5.9,
+        "end_time": 15.7,
+        "text": "Merhaba Dan, 5G hesabımda bazı şüpheli faaliyetler olduğunu bildirmek istiyorum. Benim almaya başladığım tuhaf mesajlar ve aramalar aldım ve hesapımın compromit edilmiş olabileceğini düşünüyorum.",
+        "volume_db": -16.2
+      },
+      {
+        "speaker": "agent",
+        "start_time": 16.4,
+        "end_time": 21.9,
+        "text": "Umarım, Dora. Lütfen hesabınızın detaylarını bana vermenizi rica ettim, böylece bunu sizin için incelenebilir.",
+        "volume_db": -16.0
+      },
+      {
+        "speaker": "customer",
+        "start_time": 22.6,
+        "end_time": 24.5,
+        "text": "Elbette, hesap numaram 1234567890'dur.",
+        "volume_db": -16.2
+      },
+      {
+        "speaker": "agent",
+        "start_time": 25.0,
+        "end_time": 44.2,
+        "text": "Teşekkür ederim, Dora. Hesabınızı inceliyor ve son zamanlarda bazı olağanüstü işlemlerin olduğunu gördüm. Hesabınızı daha fazla araştırma için işaretleyeceğim ve güvenlik ekibimizi bu konuya dikkatli bir şekilde bakmaya davet edeceğim. meantime, hesabınızı korumaya yardımcı olmak için yeni bir şifre oluşturmaya ve iki-faktörlü kimlik doğrulamasını etkinleştirmeye tavsiye ediyorum.",
+        "volume_db": -14.9
+      },
+      {
+        "speaker": "customer",
+        "start_time": 45.0,
+        "end_time": 51.7,
+        "text": "İyi, bu iyi geliyor. Ama tuhaf mesajlar ve aramalar hakkında ne yapacaksınız? Onları da çözüme ulaşmamıza yardımcı olmayacaksınız mı?",
+        "volume_db": -16.2
+      },
+      {
+        "speaker": "agent",
+        "start_time": 52.0,
+        "end_time": 64.8,
+        "text": "Evet, tabii. Bu konuyu güvenlik ekibimize bildiriyorum ve onlar sizinle birlikte bu sorunu çözüme ulaşacaklar. meantime, bilinmeyen numaralardan gelen aramalar veya mesajlar alırken dikkatli olun ve şüpheli linklere tıkın veya kişisel bilgilerini vermayın.",
+        "volume_db": -13.9
+      },
+      {
+        "speaker": "customer",
+        "start_time": 65.1,
+        "end_time": 68.2,
+        "text": "Tamam, teşekkür ederim, Dan. Yardımınız için teşekkür ederim.",
+        "volume_db": -16.0
+      },
+      {
+        "speaker": "agent",
+        "start_time": 68.9,
+        "end_time": 72.6,
+        "text": "Rica ederim, Dora. Bugün size yardımcı olabileceğim başka bir şey var mı?",
+        "volume_db": -18.3
+      },
+      {
+        "speaker": "customer",
+        "start_time": 73.2,
+        "end_time": 75.1,
+        "text": "Hayır, şu anda hepsi. Teşekkür ederim.",
+        "volume_db": -12.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 75.8,
+        "end_time": 83.3,
+        "text": "Elbette, Dora. Umarım, mümkün olan en kısa sürede bu sorunu çözüme ulaşabiliriz. Union Mobile'ı seçtiğiniz için teşekkür ederim. İyi bir gün dilerim.",
+        "volume_db": -12.5
+      }
+    ]
+  },
+  {
+    "file_name": "call_004.wav",
+    "language": "tr",
+    "duration_seconds": 58.3,
+    "utterances": [
+      {
+        "speaker": "customer",
+        "start_time": 0.0,
+        "end_time": 5.6,
+        "text": "Merhaba Abbigail, uluslararası roaming sorunlarım var. Şu anda yurtdışında ve veri ve arama erişimi yapamıyorum.",
+        "volume_db": -11.7
+      },
+      {
+        "speaker": "agent",
+        "start_time": 6.4,
+        "end_time": 12.2,
+        "text": "Umarım, Mike. Daha fazla bilgi alabilir misiniz? Hata mesajları alıyormusunuz veya ağa bağlanmaya çalışıyor musunuz?",
+        "volume_db": -15.0
+      },
+      {
+        "speaker": "customer",
+        "start_time": 12.9,
+        "end_time": 20.0,
+        "text": "Evet, ağa bağlanmaya çalışıyorum ama hiçbir şey işe yaramıyor. Telefonumu ve ayarları yeniden başlatmaya çalıştım ama hiçbir sonuç alamıyorum.",
+        "volume_db": -18.9
+      },
+      {
+        "speaker": "agent",
+        "start_time": 20.3,
+        "end_time": 30.4,
+        "text": "Anladım. Hesabınızı kontrol edeyim. Uluslararası roaming ayarlarınızda bir sorun olup olmadığını görmek istiyorum. Lütfen hesabınızın PIN'i veya kredi kartı ile ilgili son dört rakamını bana bildiriniz.",
+        "volume_db": -14.5
+      },
+      {
+        "speaker": "customer",
+        "start_time": 30.7,
+        "end_time": 32.3,
+        "text": "Elbette, hesabım PIN'i 1234'dür.",
+        "volume_db": -16.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 32.7,
+        "end_time": 41.8,
+        "text": "Teşekkür ederim, Mike. Hesabınızı kontrol ettim ve uluslararası roaming ayarlarınızda bir sorun buldum. Sorunu düzelttim ve şimdi yurtdışında veri ve arama erişimi yapabileceksiniz.",
+        "volume_db": -13.6
+      },
+      {
+        "speaker": "customer",
+        "start_time": 42.2,
+        "end_time": 46.0,
+        "text": "Oh, harika! Teşekkür ederim, Abbigail. Yardımınız için çok teşekkür ederim.",
+        "volume_db": -10.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 46.5,
+        "end_time": 49.9,
+        "text": "Rica ederim, Mike. Bugün başka bir konuda yardımcı olabileceğim mi?",
+        "volume_db": -16.9
+      },
+      {
+        "speaker": "customer",
+        "start_time": 50.6,
+        "end_time": 53.6,
+        "text": "Hayır, o benim tek endişimdi. Teşekkür ederim için Abbigail.",
+        "volume_db": -14.0
+      },
+      {
+        "speaker": "agent",
+        "start_time": 54.3,
+        "end_time": 57.8,
+        "text": "Rica ederim, Mike. İyi bir gün geçirin ve seyahatinizden keyif alınız!",
+        "volume_db": -12.6
+      }
+    ]
+  },
+  {
+    "file_name": "call_005.wav",
+    "language": "tr",
+    "duration_seconds": 46.0,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 4.4,
+        "text": "Merhaba, Union Mobile'a hoşgeldiniz. Ben Becky'im, bugün size nasıl yardımcı olabilirim?",
+        "volume_db": -15.5
+      },
+      {
+        "speaker": "customer",
+        "start_time": 5.1,
+        "end_time": 11.3,
+        "text": "Merhaba, telefonumda bir uygulamanın sorunları var. Bazı özellikleri ve hizmetlere erişimim yok ve hata mesajları alıyorum.",
+        "volume_db": -12.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 11.7,
+        "end_time": 15.8,
+        "text": "Üzgünüm, Besse. Lütfen kimliğinizi doğrulayalım ki daha fazla yardımcı olabilirim?",
+        "volume_db": -15.4
+      },
+      {
+        "speaker": "customer",
+        "start_time": 16.2,
+        "end_time": 17.4,
+        "text": "Tabii, hesap PIN'im 1234.",
+        "volume_db": -16.0
+      },
+      {
+        "speaker": "agent",
+        "start_time": 18.0,
+        "end_time": 28.4,
+        "text": "Teşekkür ederim, Besse. Kimliğinizi doğruladım. Ne yazık ki, bu sorunun mobil hizmetimizle ilgili değil, uygulamanın kendisiyle ilgili olduğu görülüyor. Uygulamanın destek ekibine başvurmanızı tavsiye ederim.",
+        "volume_db": -14.1
+      },
+      {
+        "speaker": "customer",
+        "start_time": 28.8,
+        "end_time": 31.7,
+        "text": "Oh, tamam. Uygulamanın destek bilgileri verebilir misiniz?",
+        "volume_db": -16.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 32.4,
+        "end_time": 39.5,
+        "text": "Üzgünüm, ancak o bilgileri sahip değilim. Uygulamanın destek bilgileri online arama veya web sitesinin destek sayfasını kontrol edebilirsiniz.",
+        "volume_db": -16.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 40.1,
+        "end_time": 43.1,
+        "text": "Tamam, deneyeceğim. Yardımınız için teşekkür ederim, Becky.",
+        "volume_db": -16.9
+      },
+      {
+        "speaker": "agent",
+        "start_time": 43.4,
+        "end_time": 45.4,
+        "text": "Rica ederim, Besse. İyi bir gün dilerim!",
+        "volume_db": -13.1
+      }
+    ]
+  },
+  {
+    "file_name": "call_006.wav",
+    "language": "tr",
+    "duration_seconds": 74.1,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 19.8,
+        "text": "Merhaba Eugen, Union Mobile'a ulaşmak için teşekkür ederim. Ben Ezra'yım ve sizin konularınızı çözmeye yardımcı olucam. Lütfen, mevcut planınızı değiştirmek için nedenlerinizi biraz daha açıklığa kavuşturun. Muhakkak, şu anda kullanılan planınızda herhangi bir sorun mu var ya da farklı ihtiyaçlarınız var mı? Benim burada size yardımcı olmak için ve sizin için en iyi çözümü bulmaya çalışıyorum.",
+        "volume_db": -13.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 20.4,
+        "end_time": 29.5,
+        "text": "Eugenie, size paylaşımınızı anladım. İhtiyaçlarınız değişti ve kesinlikle sizin için en iyi planı bulmaya çalışıyoruz. Lütfen, farklı ihtiyaçlarınızın olup olmadığını kontrol edeyim.",
+        "volume_db": -16.2
+      },
+      {
+        "speaker": "agent",
+        "start_time": 30.2,
+        "end_time": 50.2,
+        "text": "Harika, Eugenie, size bilgiyi sağladınız. Kullanım örüntünüz ve gereksinimleriniz göz önünde bulundurulunca, Single Line Plan 500 size uygun gibi geliyor. 500 MB veri, 500 dakika konuşma ve 500 metin mesaj için 40 dolar aylık ücretlidir. Bu planı sizin için uygun mu? Ayrıca, ilk üç ay için bir ücretsiz özellik olarak Çağrı İade veya Çağrı Bekleme özelliğini sunabilirim. Hangisini tercih edersiniz?",
+        "volume_db": -17.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 50.6,
+        "end_time": 59.6,
+        "text": "Seçiminiz, Eugenie! Single Line Plan 500'i sizin için değiştirdim ve ilk üç ay için Çağrı İade özelliğini ekledim. Bugün sizin için daha fazla yardımcı olabileceğim bir şey var mı?",
+        "volume_db": -13.2
+      },
+      {
+        "speaker": "agent",
+        "start_time": 60.2,
+        "end_time": 67.1,
+        "text": "Harika! Lütfen, sizin için yardımcı olmanın bir zevk oldu, Eugenie. Sizin için daha fazla soru veya endişe var mı? Güzel bir günü dilerim!",
+        "volume_db": -12.7
+      },
+      {
+        "speaker": "agent",
+        "start_time": 67.5,
+        "end_time": 73.6,
+        "text": "Union Mobile'a teşekkür ederim, Eugenie. Sizin işiniz için teşekkür ederiz ve gelecekte sizin için hizmet etmeye hazırız.",
+        "volume_db": -15.0
+      }
+    ]
+  },
+  {
+    "file_name": "call_007.wav",
+    "language": "tr",
+    "duration_seconds": 28.8,
+    "utterances": [
+      {
+        "speaker": "customer",
+        "start_time": 0.0,
+        "end_time": 4.3,
+        "text": "Merhaba, cihazımın yazılım güncellemesinde bazı sorunlar var. Yardım edebilir misiniz?",
+        "volume_db": -12.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 4.8,
+        "end_time": 15.8,
+        "text": "Merhaba Breanne, üzgünüm, ama o konuda yardımcı olamıyorum. Yazılım güncellemeleri için ayrı bir destek hattımıza başvurmanız gerekir. Numarası 1-800-123-4567'dir. Onlar size sorunu çözüme ulaşmanıza yardımcı olacaktır.",
+        "volume_db": -11.4
+      },
+      {
+        "speaker": "customer",
+        "start_time": 16.2,
+        "end_time": 21.7,
+        "text": "Oh, tamam. O değildi beklediğim. Ama haberini söylemek için teşekkür ederim. Şimdi onlara bir çağrı yapacağım.",
+        "volume_db": -14.5
+      },
+      {
+        "speaker": "agent",
+        "start_time": 22.1,
+        "end_time": 25.6,
+        "text": "Hoşça kalın, Breanne. Yine de üzgünüm için teşekkür ederim. Günaydın!",
+        "volume_db": -10.6
+      },
+      {
+        "speaker": "customer",
+        "start_time": 26.3,
+        "end_time": 28.3,
+        "text": "Teşekkür ederim, Geoffrey. Bye for now.",
+        "volume_db": -16.5
+      }
+    ]
+  },
+  {
+    "file_name": "call_008.wav",
+    "language": "tr",
+    "duration_seconds": 41.2,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 5.1,
+        "text": "Merhaba, Union Mobile'a hoş geldiniz. Ben Keisha, bugün size nasıl yardımcı olabileceğimi söyleyeyim?",
+        "volume_db": -15.0
+      },
+      {
+        "speaker": "customer",
+        "start_time": 5.6,
+        "end_time": 13.2,
+        "text": "Merhaba Keisha, Union Mobile'a arıyorum. Otomatik fatura ödeme ayarımın doğru olarak ayarlı olduğundan emin olmak istedim. Sadece kontrol etmek istedim.",
+        "volume_db": -15.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 13.8,
+        "end_time": 21.1,
+        "text": "Elbette, Wilmer. Bu konuda size yardımcı olabileceğim. Lütfen hesabınızın numarasını bana vermenizi rica ettim, böylece hesabınızı kontrol edeyim?",
+        "volume_db": -17.2
+      },
+      {
+        "speaker": "customer",
+        "start_time": 21.6,
+        "end_time": 22.4,
+        "text": "Elbette, #XXXXX.",
+        "volume_db": -16.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 23.2,
+        "end_time": 34.6,
+        "text": "Teşekkür, Wilmer. Bir anlık lütfen hesabınızı kontrol edeyim. (durdurma) Hesabınızın kontrolünü yaptım ve otomatik fatura ödemelerinizi başarıyla işlenmekte olduğu göründü. Bugün size yardımcı olabileceğim başka bir şey var mı?",
+        "volume_db": -17.2
+      },
+      {
+        "speaker": "customer",
+        "start_time": 34.9,
+        "end_time": 37.1,
+        "text": "Hayır, bu kadarlık. Teşekkürler için Keisha.",
+        "volume_db": -12.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 37.5,
+        "end_time": 40.5,
+        "text": "Rica ederim, Wilmer. Yardım etmemi bir zevk oldu. Günaydın!",
+        "volume_db": -10.6
+      }
+    ]
+  },
+  {
+    "file_name": "call_009.wav",
+    "language": "tr",
+    "duration_seconds": 55.6,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 5.8,
+        "text": "Merhaba, Union Mobile'a çağrıyı teşekkür ederim. Ben Dominic'im, bugün size nasıl yardımcı olabileceğimi söyleyeyim?",
+        "volume_db": -17.2
+      },
+      {
+        "speaker": "customer",
+        "start_time": 6.4,
+        "end_time": 12.5,
+        "text": "Merhaba Dominic, bu add-on'u iptal etmek için arıyorum. Ayın son aylarında bile denedim, ama hala hesabım üzerinde aktif.",
+        "volume_db": -11.3
+      },
+      {
+        "speaker": "agent",
+        "start_time": 13.2,
+        "end_time": 16.3,
+        "text": "Umarım, Selina. Lütfen kimliğinizi onaylayabilir misiniz? Ben",
+        "volume_db": -15.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 17.1,
+        "end_time": 18.8,
+        "text": "Elbette, telefon numaram 555-1234.",
+        "volume_db": -14.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 19.4,
+        "end_time": 30.8,
+        "text": "Teşekkür ederim, Selina. Birkaç şey kontrol etmek için lütfen bekleyin. (durdum) Peki, hesabınızda aktif olan bir add-on gördüm. Üç ay önce iptal edilmesi gereken ancak hala aktif. Umarım size bunun için rahatsızlık sağlamıştır.",
+        "volume_db": -17.2
+      },
+      {
+        "speaker": "customer",
+        "start_time": 31.3,
+        "end_time": 34.2,
+        "text": "Evet, gerçekten sinirliyim. Artık sona ermesini umuyordum.",
+        "volume_db": -15.2
+      },
+      {
+        "speaker": "agent",
+        "start_time": 34.8,
+        "end_time": 40.8,
+        "text": "Anlıyorum. Bunu sizin için hemen hallediyorum. (durdum) Peki, add-on'u iptal ettim. Hemen bir onay mesajını alacaksınız.",
+        "volume_db": -13.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 41.3,
+        "end_time": 42.5,
+        "text": "Harika, teşekkür ederim!",
+        "volume_db": -12.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 43.1,
+        "end_time": 46.9,
+        "text": "Rica ederim, Selina. Bugün size yardımcı olabileceğim başka bir şey var mı?",
+        "volume_db": -17.1
+      },
+      {
+        "speaker": "customer",
+        "start_time": 47.5,
+        "end_time": 49.2,
+        "text": "Hayır, sadece bu. Teşekkür ederim!",
+        "volume_db": -6.8
+      },
+      {
+        "speaker": "agent",
+        "start_time": 49.6,
+        "end_time": 53.0,
+        "text": "Rica ederim. Union Mobile'ı seçmenize teşekkür ederim ve güle güle!",
+        "volume_db": -10.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 53.7,
+        "end_time": 54.9,
+        "text": "Teşekkür ederim, size de!",
+        "volume_db": -10.4
+      }
+    ]
+  },
+  {
+    "file_name": "call_010.wav",
+    "language": "tr",
+    "duration_seconds": 82.9,
+    "utterances": [
+      {
+        "speaker": "agent",
+        "start_time": 0.0,
+        "end_time": 6.8,
+        "text": "Merhaba, Union Mobile'a ulaşmaya çalıştığınız için teşekkür ederim. Ben Reginald'im, bugün size nasıl yardımcı olabileceğimi söyleyeyim?",
+        "volume_db": -16.6
+      },
+      {
+        "speaker": "customer",
+        "start_time": 7.3,
+        "end_time": 14.2,
+        "text": "Merhaba Reginald, 5G cihazım ile bazı sorunlarım var. İnternet bağlantısı kuramıyorum ve ne olduğunu bilmiyorum. Yardım edebilir misiniz?",
+        "volume_db": -15.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 14.6,
+        "end_time": 26.1,
+        "text": "Elbette, Gwen. Cihazımızın 5G'de sorunları yaşadığınızı duymaktan üzgünüm. Probleminiz hakkında biraz daha fazla bilgi vermenizi rica ederim. Cihazınızı yeniden başlatmış mıydiniz veya yazılım güncellemelerini kontrol ettiniz mi?",
+        "volume_db": -12.1
+      },
+      {
+        "speaker": "customer",
+        "start_time": 26.8,
+        "end_time": 34.0,
+        "text": "Evet, yeniden başlatmıştım ve güncellemeleri kontrol ettim, ama hiçbir şey işe yaramadı. Sadece internet bağlantısı yok diyen bir mesaj geliyor.",
+        "volume_db": -20.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 34.6,
+        "end_time": 40.5,
+        "text": "Anlaşılan, o zaman farklı bir şey olabilir. Lütfen, iyi 5G kapsama alanındayım mı? Sıklıkça zayıf bir sinyal alıyorum.",
+        "volume_db": -20.4
+      },
+      {
+        "speaker": "customer",
+        "start_time": 41.1,
+        "end_time": 45.0,
+        "text": "Evet, iyi bir kapsama alanındayım. Evimdeyim ve önceden hiç problem yaşamadım.",
+        "volume_db": -16.6
+      },
+      {
+        "speaker": "agent",
+        "start_time": 45.5,
+        "end_time": 54.0,
+        "text": "Tamam, o zaman cihazınızın veya hesabınızın bir sorun olabilir. Size teknik destek ekibimizi transfer edeceğim. Onlar daha fazla yardımcı olabilecek ve sorunu çözülecek.",
+        "volume_db": -12.5
+      },
+      {
+        "speaker": "customer",
+        "start_time": 54.6,
+        "end_time": 57.0,
+        "text": "Tamam, o zaman güzel. Teşekkür ederim, Reginald!",
+        "volume_db": -10.5
+      },
+      {
+        "speaker": "agent",
+        "start_time": 57.6,
+        "end_time": 68.2,
+        "text": "Rica ederim, Gwen. İnatçı bir durum için özür dilerim ve teknik destek ekibimizin sizin durumunu bildireceğiz. Onlar size kısa süre sonra yardımcı olacağız. Bugün daha fazla yardımcı olabileceğim bir şey var mı?",
+        "volume_db": -18.9
+      },
+      {
+        "speaker": "customer",
+        "start_time": 68.7,
+        "end_time": 70.3,
+        "text": "Hayır, o kadar. Teşekkür ederim!",
+        "volume_db": -7.4
+      },
+      {
+        "speaker": "agent",
+        "start_time": 70.7,
+        "end_time": 72.7,
+        "text": "Rica ederim, Gwen. İyi bir gün dilerim!",
+        "volume_db": -11.9
+      },
+      {
+        "speaker": "customer",
+        "start_time": 73.1,
+        "end_time": 77.4,
+        "text": "Merhaba, Reginald'den transfer edildi. 5G cihazım ile internet bağlantısı kuramıyorum.",
+        "volume_db": -15.3
+      },
+      {
+        "speaker": "customer",
+        "start_time": 78.1,
+        "end_time": 80.2,
+        "text": "Oh, o kadar! Teşekkür ederim için yardımı.",
+        "volume_db": -8.8
+      },
+      {
+        "speaker": "customer",
+        "start_time": 80.6,
+        "end_time": 82.2,
+        "text": "Hayır, o kadar. Teşekkür ederim!",
+        "volume_db": -7.5
+      }
+    ]
+  },
+  {
+    "file_name": "call_011.wav",
+    "language": "tr",
+    "duration_seconds": 89.1,
+    "utterances": [
+      {
+        "speaker": "customer",
+        "start_time": 0.0,
+        "end_time": 4.9,
+        "text": "Merhaba, Union Mobile'a ulaştım. Ben Maryann, bugün size nasıl yardımcı olabileceğimi söyleyeyim?",
+        "volume_db": -15.5
+      },
+      {
+        "speaker": "agent",
+        "start_time": 5.7,
+        "end_time": 18.0,
+        "text": "Tabii ki, sizin işinize yardımcı olmak için mutluyum. Lütfen, size biraz daha fazla bilgi verin. İşinizle ilgili veri planını nasıl kullanmak istiyorsunuz? Bu, benim size uygun bir çözüm sunmak için benim için daha iyi bir anlayış oluşturacaktır.",
+        "volume_db": -16.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 18.4,
+        "end_time": 40.8,
+        "text": "Ah, anladım. O zaman, işimize uygun veri planımızla mobil hotspot özelliklerimiz sizin işiniz için kesinlikle uygun olacaktır. Mobil hotspot özelliklerimiz, 10 cihazın aynı anda bağlanmasını sağlar ve veri planımız, aylık yüksek hızda veri sağlar. Ayrıca, güvenilir ve güvenli bir bağlantı sunuyoruz, böylece sizin ekibiniz, yolculuk ederken de etkili ve güvenli bir şekilde çalışabilir. Detaylarımızı ve fiyatlarımızı size göstermek ister misiniz?",
+        "volume_db": -16.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 41.1,
+        "end_time": 60.0,
+        "text": "Elbette. Mobil hotspot özelliklerimiz, çoğu cihazla uyumlu, ancak bazı eski cihazlar, satın alınacak yeni bir cihazdan önce kontrol etmeniz gerekir. Kısıtlamalarımız, ağ kaynaklarımızın eşit ve adil bir şekilde paylaşılmasını sağlamak için var. Ancak, sizin için en iyi şekilde yararlanmanızı sağlamak için birlikte çalışacağız. Sizin veri planınızın sınırlarını ihlal etmeden.",
+        "volume_db": -15.6
+      },
+      {
+        "speaker": "agent",
+        "start_time": 60.5,
+        "end_time": 79.2,
+        "text": "Tabii ki! İşimize uygun veri planımızla, 24/7 teknik destek ekibimize erişim kazandığınız, her zaman size yardımcı olacağız. Ayrıca, uluslararası roaming ve özel güvenlik tedbirleri gibi ek özellikler sunuyoruz, sizin işiniz için özel olarak ayarlanabilir. Ve tabii ki, bütçenize ve ödeme takviminize göre esnek ödeme seçeneklerimiz var. Planı imzalamak için size çağrım mı?",
+        "volume_db": -10.6
+      },
+      {
+        "speaker": "agent",
+        "start_time": 79.6,
+        "end_time": 84.8,
+        "text": "Tabii ki! Anladım. Bir sonraki Çarşamba günü için size tekrar arama planlıyorum. Bu sizin için uygun mu?",
+        "volume_db": -13.1
+      },
+      {
+        "speaker": "agent",
+        "start_time": 85.3,
+        "end_time": 88.5,
+        "text": "Hoşça kalın, Karin. Size yardımcı olmak için mutluyum. Günaydın!",
+        "volume_db": -11.1
+      }
+    ]
+  }
+]
