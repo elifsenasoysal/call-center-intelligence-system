@@ -27,9 +27,9 @@ gc.collect()
 torch.cuda.empty_cache()
 
 # 3. MODEL VE TOKENIZER YÜKLEME
-max_seq_length = 2048
+max_seq_length = 1024
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "unsloth/llama-3-8b-instruct-bnb-4bit",
+    model_name = "unsloth/Llama-3.2-3B-Instruct-bnb-4bit",
     max_seq_length = max_seq_length,
     load_in_4bit = True,
     device_map = "cuda",
@@ -38,7 +38,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 # LoRA Adaptörlerini ekle
 model = FastLanguageModel.get_peft_model(
     model,
-    r = 16,
+    r = 8,
     target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
                       "gate_proj", "up_proj", "down_proj",],
     lora_alpha = 32,
@@ -103,7 +103,7 @@ trainer.train()
 
 # 8. MODELİ KAYDET
 # Absolute path: training/ klasörünün yanına kaydeder
-MODEL_SAVE_PATH = os.path.join(TRAINING_DIR, "llama3_callcenter_model")
+MODEL_SAVE_PATH = os.path.join(TRAINING_DIR, "llama3.2_3b_callcenter_model")
 model.save_pretrained(MODEL_SAVE_PATH)
 tokenizer.save_pretrained(MODEL_SAVE_PATH)
 print(f"İşlem başarıyla tamamlandı! Model şuraya kaydedildi: {MODEL_SAVE_PATH}")

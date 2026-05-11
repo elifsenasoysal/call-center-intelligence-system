@@ -1,6 +1,6 @@
 # 🧠 Model Eğitimi — Çalıştırma Rehberi
 
-Bu klasördeki `train.py` scripti, Llama 3 8B modelini Türkçe çağrı merkezi verileriyle
+Bu klasördeki `train.py` scripti, Llama-3.2-3B modelini Türkçe çağrı merkezi verileriyle
 ince ayar (fine-tuning) yaparak özel bir analiz modeli oluşturur.
 
 ---
@@ -109,7 +109,7 @@ Script tamamlandığında şu klasörler oluşur:
 
 ```
 services/analysis/training/
-├── llama3_callcenter_model/    ← 🎯 Eğitilmiş model burada
+├── llama3.2_3b_callcenter_model/    ← 🎯 Eğitilmiş model burada
 │   ├── adapter_model.safetensors
 │   ├── adapter_config.json
 │   └── tokenizer.json (+ diğer dosyalar)
@@ -118,7 +118,7 @@ services/analysis/training/
 
 > Eğitim başarıyla bittiğinde terminalde şu mesajı görürsün:
 > ```
-> İşlem başarıyla tamamlandı! Model şuraya kaydedildi: .../llama3_callcenter_model
+> İşlem başarıyla tamamlandı! Model şuraya kaydedildi: .../llama3.2_3b_callcenter_model
 > ```
 
 ---
