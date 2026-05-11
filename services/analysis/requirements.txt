@@ -5,9 +5,11 @@
 
 python-dotenv>=1.0.0
 pydantic>=2.0.0
-transformers
+transformers>=4.40.0
 peft
 bitsandbytes
 datasets
 accelerate
-torch
+torch>=2.0.0
+trl>=0.8.0
+unsloth
