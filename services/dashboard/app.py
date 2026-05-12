@@ -8,17 +8,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import json
 
-# Şimdilik torch/whisper bağımlılıklarından kaçınmak için import'u yoruma alıyoruz
-# from services.transcription.pipeline import get_transcription
+from services.transcription.pipeline import get_transcription
 from services.analysis.pipeline import get_analysis
-
-def mock_get_transcription(file_path):
-    import time
-    time.sleep(2) # Fake processing time
-    mock_path = os.path.join(os.path.dirname(__file__), '..', '..', 'shared', 'mock_data', 'sample_stt_output.json')
-    with open(mock_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return data
 
 st.set_page_config(
     page_title="Call Center Intelligence",
@@ -59,7 +50,7 @@ st.markdown("Yapay zeka destekli çağrı analizi, otomatik deşifre ve duygu an
 st.sidebar.header("Kontrol Paneli")
 st.sidebar.info("Lütfen analiz etmek istediğiniz müşteri görüşmesi ses kaydını yükleyin.")
 
-uploaded_file = st.sidebar.file_uploader("Ses Dosyası Yükle", type=["wav", "mp3", "m4a", "ogg", "flac"])
+uploaded_file = st.sidebar.file_uploader("Ses Dosyası Yükle", type=["wav", "mp3", "m4a", "ogg", "flac", "mp4"])
 
 if uploaded_file is not None:
     st.sidebar.success("Dosya başarıyla yüklendi!")
@@ -74,7 +65,7 @@ if uploaded_file is not None:
         try:
             # 1. STT (Transcription)
             with st.spinner("Ses dosyası metne dönüştürülüyor (STT)..."):
-                stt_result = mock_get_transcription(temp_file_path)
+                stt_result = get_transcription(temp_file_path)
             
             # 2. LLM Analysis
             with st.spinner("Metin yapay zeka ile analiz ediliyor (LLM)..."):
@@ -143,8 +134,8 @@ if uploaded_file is not None:
                     for utt in stt_result['utterances']:
                         speaker = utt.get('speaker', 'Unknown')
                         text = utt.get('text', '')
-                        start = utt.get('start', 0)
-                        end = utt.get('end', 0)
+                        start = utt.get('start_time', utt.get('start', 0))
+                        end = utt.get('end_time', utt.get('end', 0))
                         
                         # Style differently based on speaker if possible
                         st.markdown(f"**[{start:.2f}s - {end:.2f}s] {speaker}:** {text}")
