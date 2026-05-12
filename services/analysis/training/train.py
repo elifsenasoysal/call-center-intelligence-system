@@ -5,23 +5,31 @@ from dotenv import load_dotenv
 from datasets import load_dataset
 from transformers import TrainingArguments
 from trl import SFTTrainer
-import unsloth
 from unsloth import FastLanguageModel
+
+# Bu script'in bulunduğu dizin (training/)
+TRAINING_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 1. ÇEVRE DEĞİŞKENLERİNİ YÜKLE
 load_dotenv()
 
 # 2. AYARLAR VE HAFIZA TEMİZLİĞİ
-os.environ["HF_TOKEN"] = os.getenv("HUGGINGFACE_TOKEN")
+hf_token = os.getenv("HUGGINGFACE_TOKEN")
+if not hf_token:
+    raise EnvironmentError(
+        "HUGGINGFACE_TOKEN bulunamadı! "
+        "Lütfen .env dosyasına HUGGINGFACE_TOKEN=hf_xxx şeklinde ekleyin."
+    )
+os.environ["HF_TOKEN"] = hf_token
 os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
 
 gc.collect()
 torch.cuda.empty_cache()
 
 # 3. MODEL VE TOKENIZER YÜKLEME
-max_seq_length = 2048
+max_seq_length = 1024
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "unsloth/llama-3-8b-instruct-bnb-4bit",
+    model_name = "unsloth/Llama-3.2-3B-Instruct-bnb-4bit",
     max_seq_length = max_seq_length,
     load_in_4bit = True,
     device_map = "cuda",
@@ -30,7 +38,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 # LoRA Adaptörlerini ekle
 model = FastLanguageModel.get_peft_model(
     model,
-    r = 16,
+    r = 8,
     target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
                       "gate_proj", "up_proj", "down_proj",],
     lora_alpha = 32,
@@ -47,15 +55,22 @@ def formatting_prompts_func(examples):
     outputs      = examples["output"]
     texts = []
     for instruction, input, output in zip(instructions, inputs, outputs):
-        text = f"### Talimat:\n{instruction}\n\n### Giriş:\n{input}\n\n### Yanıt:\n{output}"
+        # EOS token: modelin cümlenin nerede biteceğini öğrenmesi için şart
+        text = (
+            f"### Talimat:\n{instruction}\n\n"
+            f"### Giriş:\n{input}\n\n"
+            f"### Yanıt:\n{output}"
+        ) + tokenizer.eos_token
         texts.append(text)
     return texts
 
-# 5. VERİ SETİNİ YÜKLE 
+# 5. VERİ SETİNİ YÜKLE
+# Absolute path kullanıyoruz — script nerede çalıştırılırsa çalıştırılsın doğru bulur
+DATA_PATH = os.path.join(TRAINING_DIR, "train_data.jsonl")
 try:
-    dataset = load_dataset("json", data_files={"train": "train_data.jsonl"}, split="train")
+    dataset = load_dataset("json", data_files={"train": DATA_PATH}, split="train")
 except FileNotFoundError:
-    print("HATA: 'train_data.jsonl' dosyası bulunamadı! Lütfen dosyanın script ile aynı dizinde olduğundan emin olun.")
+    print(f"HATA: '{DATA_PATH}' dosyası bulunamadı!")
     exit()
 
 # 6. TRAINER KURULUMU
@@ -78,7 +93,7 @@ trainer = SFTTrainer(
         weight_decay = 0.01,
         lr_scheduler_type = "linear",
         seed = 3407,
-        output_dir = "outputs",
+        output_dir = os.path.join(TRAINING_DIR, "outputs"),
     ),
 )
 
@@ -87,6 +102,8 @@ print("Eğitim başlıyor...")
 trainer.train()
 
 # 8. MODELİ KAYDET
-model.save_pretrained("llama3_callcenter_model")
-tokenizer.save_pretrained("llama3_callcenter_model")
-print("İşlem başarıyla tamamlandı! Model 'llama3_callcenter_model' klasörüne kaydedildi.")
+# Absolute path: training/ klasörünün yanına kaydeder
+MODEL_SAVE_PATH = os.path.join(TRAINING_DIR, "llama3.2_3b_callcenter_model")
+model.save_pretrained(MODEL_SAVE_PATH)
+tokenizer.save_pretrained(MODEL_SAVE_PATH)
+print(f"İşlem başarıyla tamamlandı! Model şuraya kaydedildi: {MODEL_SAVE_PATH}")

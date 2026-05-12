@@ -25,3 +25,8 @@ models/
 Thumbs.db
 
 .ipynb_checkpoints/
+# --- Zehra'nın LLM Çalışma Alanı Eklemeleri ---
+*.safetensors
+services/analysis/models/
+services/analysis/training/outputs/
+services/analysis/training/llama3.2_3b_callcenter_model/
