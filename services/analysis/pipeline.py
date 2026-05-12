@@ -66,7 +66,6 @@ def get_analysis(stt_output: dict) -> dict:
     Returns:
         dict with keys: overall_sentiment, sentiment_score, complaint_category,
         keywords, summary, agent_performance_score.
-        See shared/mock_data/sample_llm_output.json for reference.
     """
     model, tokenizer = _load_model()
     
@@ -74,7 +73,7 @@ def get_analysis(stt_output: dict) -> dict:
     utterances = stt_output.get("utterances", [])
     dialogue_lines = []
     for u in utterances:
-        speaker_map = {"agent": "Müşteri Temsilcisi", "customer": "Müşteri", "unknown": "Bilinmeyen"}
+        speaker_map = {"agent": "Temsilci", "customer": "Müşteri", "unknown": "Bilinmeyen"}
         speaker_name = speaker_map.get(u.get("speaker", "unknown"), "Bilinmeyen")
         text = u.get("text", "").strip()
         if text:
@@ -87,10 +86,7 @@ def get_analysis(stt_output: dict) -> dict:
         return {}
     
     # 2. Prompt'u Hazırla (Eğitimdeki formata tam uyumlu)
-    instruction = (
-        "Aşağıdaki çağrı dökümünü analiz et ve bir JSON formatında şu bilgileri çıkar: "
-        "overall_sentiment, sentiment_score, complaint_category, keywords, summary, ve agent_performance_score."
-    )
+    instruction = "Aşağıdaki müşteri hizmetleri diyaloğunu analiz et. Duyguyu belirle, konuyu tespit et ve kısa bir özet çıkar."
     
     prompt = (
         f"### Talimat:\n{instruction}\n\n"
@@ -105,7 +101,7 @@ def get_analysis(stt_output: dict) -> dict:
         outputs = model.generate(
             **inputs, 
             max_new_tokens=256,
-            temperature=0.1,  # JSON üretiminde tutarlılık için düşük sıcaklık
+            temperature=0.1,  
             do_sample=True,
             eos_token_id=tokenizer.eos_token_id
         )
@@ -113,23 +109,41 @@ def get_analysis(stt_output: dict) -> dict:
     # Sadece yeni üretilen tokenları al
     response_text = tokenizer.decode(outputs[0][inputs.input_ids.shape[1]:], skip_special_tokens=True).strip()
     
-    # 4. JSON Ayrıştırma (Eğer model başına sonuna markdown backtick koyduysa temizle)
-    if "```json" in response_text:
-        response_text = response_text.split("```json")[1].split("```")[0].strip()
-    elif "```" in response_text:
-        response_text = response_text.split("```")[1].split("```")[0].strip()
-        
-    try:
-        result_dict = json.loads(response_text)
-        return result_dict
-    except json.JSONDecodeError:
-        print(f"JSON Ayrıştırma Hatası. Model çıktısı:\n{response_text}")
-        # Hata durumunda yedek (fallback) değerler dön
-        return {
-            "overall_sentiment": "neutral",
-            "sentiment_score": 0.0,
-            "complaint_category": "unknown",
-            "keywords": [],
-            "summary": "Analiz başarısız oldu veya model beklenen JSON formatında yanıt vermedi.",
-            "agent_performance_score": 0.5
-        }
+    # 4. Metin Ayrıştırma (Eğitim çıktısındaki formatı parse et)
+    result_dict = {
+        "overall_sentiment": "neutral",
+        "sentiment_score": 0.0,
+        "complaint_category": "unknown",
+        "keywords": [],
+        "summary": "Analiz başarısız oldu veya model beklenen formatta yanıt vermedi.",
+        "agent_performance_score": 0.5
+    }
+    
+    for line in response_text.split('\n'):
+        line = line.strip()
+        if line.startswith("Özet:"):
+            result_dict["summary"] = line.replace("Özet:", "").strip()
+        elif line.startswith("Genel Duygu:"):
+            result_dict["overall_sentiment"] = line.replace("Genel Duygu:", "").strip()
+        elif line.startswith("Duygu Skoru:"):
+            try:
+                result_dict["sentiment_score"] = float(line.replace("Duygu Skoru:", "").strip())
+            except:
+                pass
+        elif line.startswith("Şikayet Kategorisi:"):
+            result_dict["complaint_category"] = line.replace("Şikayet Kategorisi:", "").strip()
+        elif line.startswith("Anahtar Kelimeler:"):
+            kws = line.replace("Anahtar Kelimeler:", "").strip()
+            result_dict["keywords"] = [k.strip() for k in kws.split(",") if k.strip()]
+        elif line.startswith("Temsilci Performans Skoru:"):
+            val = line.replace("Temsilci Performans Skoru:", "").strip()
+            try:
+                if "/" in val:
+                    num, den = val.split("/")
+                    result_dict["agent_performance_score"] = float(num) / float(den)
+                else:
+                    result_dict["agent_performance_score"] = float(val) / 10.0 if float(val) > 1 else float(val)
+            except:
+                pass
+
+    return result_dict
