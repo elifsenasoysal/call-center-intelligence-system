@@ -16,8 +16,6 @@ data/processed/
 *.pt
 *.bin
 
-models/
-
 .vscode/
 .idea/
 
@@ -25,8 +23,6 @@ models/
 Thumbs.db
 
 .ipynb_checkpoints/
-# --- Zehra'nın LLM Çalışma Alanı Eklemeleri ---
-*.safetensors
-services/analysis/models/
+
+# Training outputs (checkpoints)
 services/analysis/training/outputs/
-services/analysis/training/llama3.2_3b_callcenter_model/

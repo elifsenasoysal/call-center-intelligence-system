@@ -1,8 +1,0 @@
-{
-  "overall_sentiment": "negative",
-  "sentiment_score": -0.7,
-  "complaint_category": "billing",
-  "keywords": ["delay", "payment", "error"],
-  "summary": "Customer called regarding a billing discrepancy, reported an overcharge on last month's invoice.",
-  "agent_performance_score": 0.8
-}
