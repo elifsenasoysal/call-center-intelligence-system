@@ -176,8 +176,7 @@ Diarization işlemini yapabilmek için Pyannote modellerini kullanmamız gerekiy
 # .env dosyası
 HUGGINGFACE_TOKEN=hf_sizin_tokeniniz_buraya_gelecek
 WHISPER_MODEL_SIZE=large-v3
-# LLAMA_MODEL_PATH=
-# OPENAI_API_KEY=
+
 ```
 
 > **ÖNEMLİ:** HuggingFace token'ı almak için [HuggingFace Settings](https://huggingface.co/settings/tokens) adresini ziyaret edebilirsiniz. Token'ı kullanabilmek için [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1) ve [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) sayfalarındaki "Kullanım Şartları"nı (Terms of Use) onaylamanız gerekmektedir.
