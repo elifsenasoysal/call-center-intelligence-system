@@ -60,13 +60,22 @@ call-center-intelligence-system/
 │   ├── analysis/                    # LLM analizi ve model eğitimi
 │   │   ├── models/                  # LoRA adaptörleri (llama3.2_3b_callcenter_model)
 │   │   ├── training/                # Eğitim (fine-tuning) scriptleri ve veri seti
-│   │   └── pipeline.py              # LLM analiz işlem borusu
+│   │   │   ├── train.py             # Fine-tuning ana scripti
+│   │   │   ├── data_prep.py         # Veri seti çeviri ve hazırlık scripti
+│   │   │   ├── dataset_formatter.py # dB değeri üretimi ve veri formatlama
+│   │   │   ├── update_outputs.py    # Eğitim çıktılarını güncelleme scripti
+│   │   │   └── train_data.jsonl     # Hazırlanmış eğitim veri seti
+│   │   ├── pipeline.py              # LLM analiz işlem borusu
+│   │   └── requirements.txt         # LLM servis bağımlılıkları
 │   ├── dashboard/                   # Streamlit web arayüzü
-│   ├── retrieval/                   # (Planlanan) RAG tabanlı bilgi getirme servisi
+│   │   ├── app.py                   # Ana Streamlit uygulaması
+│   │   └── requirements.txt         # Arayüz bağımlılıkları
+│   ├── retrieval/                   # (Geliştirme aşamasında) RAG tabanlı bilgi getirme servisi
 │   └── transcription/               # STT, Diarization ve Ses Ön İşleme
 │       ├── diarizer.py              # Konuşmacı ayrıştırma (Pyannote)
 │       ├── preprocessor.py          # Gürültü azaltma ve format dönüştürme
-│       └── pipeline.py              # STT işlem borusu
+│       ├── pipeline.py              # STT işlem borusu
+│       └── requirements.txt         # STT servis bağımlılıkları
 ├── shared/
 │   ├── contracts.py                 # Pydantic veri modelleri (STTOutput, Utterance)
 │   └── mock_data/                   # Test ve geliştirme için örnek veriler
@@ -132,7 +141,7 @@ Projeyi bilgisayarınızda (local) çalıştırmak için donanım gereksinimleri
 git clone https://github.com/elifsenasoysal/call-center-intelligence-system.git
 cd call-center-intelligence-system
 ```
-*(Not: Llama 3 modeli için eğitilmiş LoRA adaptörleri (~48MB) repoya dahil edilmiştir. Modelin temel ağırlıkları (~6GB) uygulama ilk çalıştığında otomatik indirilecektir.)*
+*(Not: Llama 3 modeli için eğitilmiş LoRA adaptörleri (~48MB) repoya dahil edilmiştir. Temel model ağırlıkları (~6GB) uygulama ilk çalıştığında [meta-llama/Llama-3.2-3B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) adresinden otomatik indirilecektir — bunun için HuggingFace token'ınızın modele erişim izni olması gerekmektedir.)*
 
 ### 2. Sanal Ortam (Virtual Environment) Oluşturun
 
@@ -167,7 +176,7 @@ pip install -r services/dashboard/requirements.txt
 
 ### 4. Ortam Değişkenlerini (Environment Variables) Ayarlayın
 
-Diarization işlemini yapabilmek için Pyannote modellerini kullanmamız gerekiyor. Bunun için HuggingFace erişim token'ına (ücretsiz) ihtiyacınız var.
+Bu proje iki farklı model için HuggingFace erişim token'ına ihtiyaç duyar. Token almak için [HuggingFace Settings](https://huggingface.co/settings/tokens) adresini ziyaret edin.
 
 1. Ana dizinde bulunan `.env.example` dosyasının adını `.env` olarak değiştirin.
 2. Dosyanın içini açıp aşağıdaki gibi düzenleyin:
@@ -176,10 +185,18 @@ Diarization işlemini yapabilmek için Pyannote modellerini kullanmamız gerekiy
 # .env dosyası
 HUGGINGFACE_TOKEN=hf_sizin_tokeniniz_buraya_gelecek
 WHISPER_MODEL_SIZE=large-v3
-
 ```
 
-> **ÖNEMLİ:** HuggingFace token'ı almak için [HuggingFace Settings](https://huggingface.co/settings/tokens) adresini ziyaret edebilirsiniz. Token'ı kullanabilmek için [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1) ve [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) sayfalarındaki "Kullanım Şartları"nı (Terms of Use) onaylamanız gerekmektedir.
+> **ÖNEMLİ:** Token'ınızın aşağıdaki **tüm** model sayfalarındaki "Kullanım Şartları"nı (Terms of Use) onaylamış olması gerekmektedir:
+>
+> **Diarization (Pyannote) için:**
+> - [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1)
+> - [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0)
+>
+> **LLM (Meta Llama 3) için:**
+> - [meta-llama/Llama-3.2-3B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct)
+>
+> Bu onaylar yapılmadan uygulama başlatıldığında model indirme adımında yetkilendirme hatası alırsınız.
 
 ---
 
