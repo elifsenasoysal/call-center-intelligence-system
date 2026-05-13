@@ -1,126 +1,195 @@
-# Call Center Intelligence System
+# 🎧 Call Center Intelligence System
 
-```
+![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-MPS%20%7C%20CUDA-orange)
+![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B)
+![Llama 3](https://img.shields.io/badge/LLM-Llama_3.2_3B-purple)
+
+**Call Center Intelligence System**, müşteri hizmetleri görüşmelerini tamamen otonom bir şekilde yazıya döken (Speech-to-Text), konuşmacıları ayrıştıran (Diarization) ve yerel bir Büyük Dil Modeli (LLM) ile analiz eden yapay zeka destekli bir pipeline projesidir.
+
+---
+
+## 📌 Projenin Amacı
+
+Müşteri hizmetleri operasyonlarında kalite kontrol süreçleri genellikle manuel, zaman alıcı ve maliyetlidir. Bu proje, ham ses kayıtlarını alarak saniyeler içerisinde:
+- Görüşmenin deşifresini çıkarır.
+- Müşterinin şikayet kategorisini ve duygu durumunu (sentiment) analiz eder.
+- Görüşmenin kısa bir özetini oluşturur.
+- Temsilci performansına otomatik olarak bir puan atar.
+
+En büyük avantajı: **Tüm veriler yerel cihazınızda işlenir.** OpenAI API veya benzeri dış servisler kullanılmadığı için şirket/müşteri verileri dışarı sızmaz (100% Privacy).
+
+---
+
+## 📸 Ekran Görüntüleri
+
+| STT Dönüşüm İşlemi | LLM Analiz İşlemi |
+|:---:|:---:|
+| ![STT Process](docs/assets/stt-process-page.png) | ![LLM Process](docs/assets/llm-process-page.png) |
+| **Pozitif Çağrı Örneği (Özet)** | **Negatif Çağrı Örneği (Özet)** |
+| ![Pozitif Top](docs/assets/positive_example_top.png) | ![Negatif Top](docs/assets/negative_example_top.png) |
+| **Pozitif Çağrı Örneği (Transkript)** | **Negatif Çağrı Örneği (Transkript)** |
+| ![Pozitif Bottom](docs/assets/positive_example_bottom.png) | ![Negatif Bottom](docs/assets/negative_example_bottom.png) |
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+
+Proje, modern ve yüksek performanslı açık kaynak kütüphaneler üzerine inşa edilmiştir:
+
+- **Ses İşleme:** `pydub` (ses formatlama), `noisereduce` (gürültü azaltma - spectral gating), `NumPy` (ses matrisi işlemleri).
+- **Speech-to-Text (STT):** `openai-whisper` (transkripsiyon).
+- **Diarization:** `pyannote.audio` (konuşmacı ayrıştırma).
+- **Dil Modeli (LLM):** `transformers` (HuggingFace), `peft` (LoRA adaptör yükleme), `torch` (PyTorch - CUDA/MPS destekli).
+- **Model Eğitimi:** `unsloth` (hızlı fine-tuning), `trl` (SFTTrainer), `bitsandbytes` (4-bit quantization), `datasets` (veri işleme).
+- **Arayüz:** `streamlit`.
+- **Veri Doğrulama:** `pydantic` (veri sözleşmeleri).
+
+---
+
+## 📁 Proje Yapısı
+
+```text
 call-center-intelligence-system/
-│
-├── services/                           # Core service modules
-│   ├── __init__.py
-│   │
-│   ├── transcription/                  # Speech-to-Text service ✅ Functional
-│   │   ├── __init__.py
-│   │   ├── pipeline.py                 # Main entry point: get_transcription()
-│   │   ├── preprocessor.py             # Audio preprocessing (mono, 16kHz, noise reduction)
-│   │   ├── diarizer.py                 # Speaker diarization + timestamp merge
-│   │   └── requirements.txt            # Service dependencies
-│   │
-│   ├── analysis/                       # LLM-based analysis service 🔧 In development
-│   │   ├── __init__.py
-│   │   ├── pipeline.py                 # Main entry point: get_analysis() (NotImplemented)
-│   │   ├── requirements.txt            # Service dependencies
-│   │   └── training/                   # Model fine-tuning infrastructure
-│   │       ├── README.md               # Training execution notes
-│   │       ├── data_prep.py            # Dataset translation script (EN→TR, Llama 3)
-│   │       ├── train.py                # LoRA fine-tuning script (Llama 3 8B)
-│   │       └── train_data.jsonl        # Training dataset (instruction/input/output format)
-│   │
-│   ├── retrieval/                      # RAG service 📋 Planned
-│   │   └── __init__.py
-│   │
-│   └── dashboard/                      # Pipeline orchestration + UI 📋 Skeleton
-│       ├── __init__.py
-│       ├── app.py                      # CLI entry point: run_pipeline()
-│       └── requirements.txt
-│
-├── shared/                             # Shared modules between services
-│   ├── __init__.py
-│   ├── contracts.py                    # Pydantic data models (STTOutput, Utterance)
-│   └── mock_data/                      # Sample outputs (for development & testing)
-│       ├── sample_stt_output.json      # Example transcription output
-│       └── sample_llm_output.json      # Example analysis output
-│
-├── data/                               # Data directory
-│   ├── raw/                            # Raw audio files (git-ignored)
-│   ├── processed/                      # Processed audio files (git-ignored)
-│   └── turkish_telecom_dataset.csv     # Turkish-translated call center dataset
-│
-├── .env.example                        # Environment variable template
-├── .gitignore
-└── README.md
+├── data/
+│   ├── turkish_telecom_dataset.csv  # Çevrilmiş eğitim veri seti
+│   ├── raw/                         # İşlenmemiş ham ses dosyaları
+│   └── processed/                   # Ön işlemden geçmiş ses dosyaları
+├── docs/assets/                     # Dokümantasyon görselleri
+├── services/
+│   ├── analysis/                    # LLM analizi ve model eğitimi
+│   │   ├── models/                  # LoRA adaptörleri (llama3.2_3b_callcenter_model)
+│   │   ├── training/                # Eğitim (fine-tuning) scriptleri ve veri seti
+│   │   └── pipeline.py              # LLM analiz işlem borusu
+│   ├── dashboard/                   # Streamlit web arayüzü
+│   ├── retrieval/                   # (Planlanan) RAG tabanlı bilgi getirme servisi
+│   └── transcription/               # STT, Diarization ve Ses Ön İşleme
+│       ├── diarizer.py              # Konuşmacı ayrıştırma (Pyannote)
+│       ├── preprocessor.py          # Gürültü azaltma ve format dönüştürme
+│       └── pipeline.py              # STT işlem borusu
+├── shared/
+│   ├── contracts.py                 # Pydantic veri modelleri (STTOutput, Utterance)
+│   └── mock_data/                   # Test ve geliştirme için örnek veriler
+├── .env.example                     # Çevre değişkenleri şablonu
+└── README.md                        # Proje dokümantasyonu
 ```
 
 ---
 
-## File Descriptions
+## 🧠 Nasıl Çalışır? (Pipeline Mimarisi)
 
-### `services/transcription/` — Speech-to-Text Service
+Uygulama arka planda modüler bir yapıya sahiptir. Süreç şu şekilde işler:
 
-| File | Description |
-|------|-------------|
-| `pipeline.py` | Main entry point. The `get_transcription(file_path)` function runs the entire STT pipeline sequentially: preprocess → Whisper STT → diarization → merge. Performs device detection (CUDA > MPS > CPU). Since Whisper does not support float64 on MPS, it falls back to CPU on MPS devices. Returns the output as a dictionary matching the STTOutput schema. |
-| `preprocessor.py` | Prepares raw audio files for Whisper: converts audio to mono, resamples to 16kHz, and applies spectral gating-based noise reduction using noisereduce. Saves the output as `.wav` under `data/processed/`. Note: Uses pydub's internal `_spawn()` method, which may change in future versions. |
-| `diarizer.py` | Handles two tasks: (1) `diarize()` — performs speaker diarization using pyannote 3.1, labels SPEAKER_01 as the agent and the rest as customers. (2) `merge_transcription_with_diarization()` — matches Whisper segments with pyannote segments based on timestamp overlap and adds dBFS-based audio volume levels from the raw audio file to each utterance. |
-| `requirements.txt` | pydub, noisereduce, openai-whisper, pyannote.audio, python-dotenv, pydantic, ffmpeg-python |
+### 1. Ses Ön İşleme (Preprocessing)
+Sisteme yüklenen ses dosyaları (`.wav`, `.mp3`, `.m4a` vb.), `pydub` ve `noisereduce` kullanılarak işlenir:
+- Ses kanalları **mono** formata dönüştürülür.
+- Örnekleme hızı (sample rate) **16kHz**'e sabitlenir.
+- Spectral gating yöntemiyle arka plan gürültüsü temizlenir (noise reduction).
 
-### `services/analysis/` — LLM-Based Analysis Service
+### 2. Metne Dönüştürme ve Diarization (STT)
+- **OpenAI Whisper** kullanılarak ses metne dönüştürülür. (Not: Mac cihazlarda Whisper'ın kelime bazlı zaman damgaları MPS'i desteklemediğinden otomatik olarak CPU'ya geçiş yapılır).
+- **Pyannote Audio** ile Müşteri ve Temsilci sesleri birbirinden ayrıştırılır (Diarization).
+- Ham ses dosyası üzerinden **desibel (dB) seviyeleri** analiz edilir. LLM, müşterinin bağırdığını veya sessizleştiğini bu sayede algılayabilir.
+- Çıktılar `shared/contracts.py` içerisindeki Pydantic veri sözleşmelerine (Data Contracts) uygun olarak yapılandırılır.
 
-| File | Description |
-|------|-------------|
-| `pipeline.py` | The `get_analysis(stt_output)` function is defined but not implemented yet (`NotImplementedError`). It will process transcription output and return sentiment analysis, complaint category, summary, and agent performance scores. |
-| `requirements.txt` | transformers, peft, bitsandbytes, datasets, accelerate, torch |
-| `training/data_prep.py` | Downloads the `telecom-customer-support-synthetic-replicas` dataset from HuggingFace, translates English dialogues into Turkish using Llama 3 8B (4-bit), and saves the result as a CSV file. Requires GPU (CUDA). |
-| `training/train.py` | Fine-tunes a Llama 3 8B model on Turkish call center data using LoRA adapters. Uses Unsloth + SFTTrainer. Memory optimized with 4-bit quantization and gradient checkpointing. Requires GPU (CUDA). |
-| `training/train_data.jsonl` | Fine-tuning dataset in instruction/input/output JSONL format. |
+### 3. Yapay Zeka Analizi (LLM)
+- Transkript, zaman damgaları ve dB değerleriyle formatlanıp **Llama-3.2-3B-Instruct** modeline beslenir.
+- Bellek optimizasyonu için model *Singleton* tasarım deseniyle bellekte tutulur.
+- Modelden dönen metin, hem **JSON ayrıştırma** hem de **fuzzy label matching (bulanık etiket eşleştirme)** yöntemleriyle akıllıca parse edilerek yapılandırılmış verilere (Duygu, Kategori, Skor, Özet vb.) dönüştürülür.
 
-### `services/retrieval/` — RAG Service (Planned)
-
-Currently contains only `__init__.py`. Planned future features include vector search over historical call records, similar case retrieval, and knowledge base integration using RAG (Retrieval-Augmented Generation).
-
-### `services/dashboard/` — Orchestration & UI
-
-| File | Description |
-|------|-------------|
-| `app.py` | Currently a simple CLI-based orchestrator. The `run_pipeline(file_path)` function executes the transcription pipeline. Analysis integration is currently commented out. Planned to be converted into a Streamlit/Gradio-based web UI in the future. |
-| `requirements.txt` | Currently only includes python-dotenv. Streamlit/Gradio will be added later. |
-
-### `shared/` — Shared Modules
-
-| File | Description |
-|------|-------------|
-| `contracts.py` | Data contracts shared across services. `Utterance`: a single speech segment (speaker, start/end time, text, volume_db). `STTOutput`: full transcription output (file_name, language, duration, utterance list). Uses Pydantic BaseModel. |
-| `mock_data/sample_stt_output.json` | Example output from the transcription service. Contains a Turkish call center dialogue with agent/customer labels and volume_db values. Intended for development and testing purposes. |
-| `mock_data/sample_llm_output.json` | Example target output for the analysis service. Includes fields such as overall_sentiment, sentiment_score, complaint_category, keywords, summary, and agent_performance_score. |
-
-### `data/` — Data Directory
-
-| Directory/File | Description |
-|----------------|-------------|
-| `raw/` | Raw audio files are placed here. Git-ignored — files are not included in the repository. |
-| `processed/` | Outputs generated by the preprocessor are stored here (mono 16kHz WAV). Git-ignored. |
-| `turkish_telecom_dataset.csv` | Turkish call center dataset generated using `data_prep.py`. Contains original English dialogues and Turkish translations produced with Llama 3, along with category and similarity scores. |
-
-### Root Files
-
-| File | Description |
-|------|-------------|
-| `.env.example` | Environment variable template. Includes `HUGGINGFACE_TOKEN` (required for the pyannote model) and `WHISPER_MODEL_SIZE` (default: large-v3). |
-| `.gitignore` | Ignores .env, \_\_pycache\_\_, venv, data/raw, data/processed, model files (.pt, .bin), and IDE directories. |
+### 4. Retrieval Servisi (Gelecek Planı)
+- İlerleyen aşamalarda `services/retrieval/` dizininde, RAG (Retrieval-Augmented Generation) altyapısıyla şirketin bilgi bankasından otomatik yanıt önerileri getirecek servis geliştirilecektir.
 
 ---
 
-## Environment Variables
+## 🎓 Model Eğitimi (Fine-Tuning)
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `HUGGINGFACE_TOKEN` | ✅ | HuggingFace access token required to download the pyannote diarization model |
-| `WHISPER_MODEL_SIZE` | ❌ | Whisper model size (`tiny`, `base`, `small`, `medium`, `large-v3`). Default: `large-v3` |
+Bu projenin zekası, modele çağrı merkezi görüşmelerini analiz etmesini öğreten özel bir eğitim (Fine-Tuning) sürecine dayanır:
+
+1. **Veri Seti Hazırlığı:** `Ming-secludy/telecom-customer-support-synthetic-replicas` veri seti Llama 3 ile `data_prep.py` kullanılarak Türkçeye çevrildi (`data/turkish_telecom_dataset.csv`).
+2. **Dinamik Ses Seviyeleri (dB):** `dataset_formatter.py` ile metindeki duygu ifadelerine göre (ör: "iptal", "!", "...") gerçeğe yakın desibel değerleri sentetik olarak üretildi.
+3. **Eğitim (LoRA & Unsloth):** `training/train.py` scripti kullanılarak Llama-3.2-3B-Instruct modeline Unsloth framework'ü ile **LoRA** (Low-Rank Adaptation) uygulandı. Model 4-bit quantization ile bellek dostu bir şekilde eğitildi.
+4. **Adaptör Kullanımı:** Eğitilen modelin ağırlıkları (`services/analysis/models/llama3.2_3b_callcenter_model` içinde ~48MB) inferans sırasında ana modelin üzerine bindirilerek çalışır. (HuggingFace'den indirilecek ana model ~6GB VRAM/RAM gerektirir).
 
 ---
 
-## Current Status
+## 💻 Kurulum Adımları (Adım Adım)
 
-| Module | Status | Notes |
-|--------|--------|-------|
-| Transcription | ✅ Functional | Preprocessing + Whisper + Diarization + Volume analysis |
-| Analysis | 🔧 In Development | Fine-tuning infrastructure ready, pipeline integration pending |
-| Retrieval | 📋 Planned | RAG-based similar call retrieval |
-| Dashboard | 📋 Skeleton | CLI orchestrator exists, UI not implemented yet |
+Projeyi bilgisayarınızda (local) çalıştırmak için donanım gereksinimleri ve kurulum adımları aşağıdadır.
+
+### Donanım Gereksinimleri
+- **İşlemci:** Apple Silicon (M1/M2/M3) veya CUDA Destekli Nvidia GPU (Ya da güçlü bir CPU)
+- **Bellek:** Minimum 8GB (Önerilen 16GB RAM) LLM ve STT modelinin belleğe yüklenebilmesi için.
+- **Disk:** Yaklaşık 10GB boş alan (Modeller ve bağımlılıklar için)
+
+### Diğer Gereksinimler
+- **Python 3.11 veya üzeri**
+- **FFmpeg** (Ses işleme kütüphaneleri için sistemde yüklü olmalıdır. Mac'te: `brew install ffmpeg`)
+
+### 1. Repoyu Klonlayın
+
+```bash
+git clone https://github.com/elifsenasoysal/call-center-intelligence-system.git
+cd call-center-intelligence-system
+```
+*(Not: Llama 3 modeli için eğitilmiş LoRA adaptörleri (~48MB) repoya dahil edilmiştir. Modelin temel ağırlıkları (~6GB) uygulama ilk çalıştığında otomatik indirilecektir.)*
+
+### 2. Sanal Ortam (Virtual Environment) Oluşturun
+
+Python paketlerinin sisteminizi kirletmemesi için sanal ortam kurmak şarttır:
+
+```bash
+# Sanal ortamı oluşturun
+python3 -m venv .venv
+
+# Sanal ortamı aktif edin (Mac/Linux için)
+source .venv/bin/activate
+
+# Windows kullanıyorsanız:
+# .venv\Scripts\activate
+```
+
+### 3. Bağımlılıkları Yükleyin
+
+Projedeki her servisin kendi gereksinimleri bulunmaktadır. Kurulumları sırasıyla başlatın:
+
+```bash
+# 1. Ses ve transkript kütüphaneleri
+pip install -r services/transcription/requirements.txt
+
+# 2. LLM, model ve Torch kütüphaneleri
+pip install -r services/analysis/requirements.txt
+
+# 3. Web arayüzü kütüphaneleri
+pip install -r services/dashboard/requirements.txt
+```
+*(Apple Silicon - M1/M2/M3 kullanan Mac cihazlarda PyTorch `mps` donanım hızlandırması, Windows/Linux'ta ise `cuda` donanım hızlandırması kod içerisinde otomatik olarak algılanıp aktif edilecektir.)*
+
+### 4. Ortam Değişkenlerini (Environment Variables) Ayarlayın
+
+Diarization işlemini yapabilmek için Pyannote modellerini kullanmamız gerekiyor. Bunun için HuggingFace erişim token'ına (ücretsiz) ihtiyacınız var.
+
+1. Ana dizinde bulunan `.env.example` dosyasının adını `.env` olarak değiştirin.
+2. Dosyanın içini açıp aşağıdaki gibi düzenleyin:
+
+```env
+# .env dosyası
+HUGGINGFACE_TOKEN=hf_sizin_tokeniniz_buraya_gelecek
+WHISPER_MODEL_SIZE=large-v3
+# LLAMA_MODEL_PATH=
+# OPENAI_API_KEY=
+```
+
+> **ÖNEMLİ:** HuggingFace token'ı almak için [HuggingFace Settings](https://huggingface.co/settings/tokens) adresini ziyaret edebilirsiniz. Token'ı kullanabilmek için [pyannote/speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1) ve [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) sayfalarındaki "Kullanım Şartları"nı (Terms of Use) onaylamanız gerekmektedir.
+
+---
+
+## 🚀 Uygulamayı Çalıştırma
+
+Tüm kurulumları tamamladıktan ve sanal ortamınız `.venv` aktifken, arayüzü başlatmak için şu komutu çalıştırın:
+
+```bash
+streamlit run services/dashboard/app.py
+```
+
+Bu komut, varsayılan web tarayıcınızda (genellikle `http://localhost:8501`) Dashboard'u açacaktır. Arayüzden bir ses dosyası yükleyip "Analizi Başlat" butonuna tıklamanız yeterlidir.
