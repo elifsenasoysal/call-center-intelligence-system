@@ -1,0 +1,8 @@
+pydub>=0.25.1               #formatting, mono/stereo settings, volume normalization etc...
+noisereduce>=3.0.0          #noise reduction using spectral gating
+openai-whisper>=20231117    #speech to text
+pyannote.audio>=3.1.1       #speaker diarization (detects who is speaking)
+torchcodec                  #required by torchaudio/pyannote for audio decoding
+python-dotenv>=1.0.0        #environment variables
+pydantic>=2.0.0             #data validation
+ffmpeg-python>=0.2.0        #bridge for pydub to use ffmpeg (which is the actual engine performing the audio processing)
