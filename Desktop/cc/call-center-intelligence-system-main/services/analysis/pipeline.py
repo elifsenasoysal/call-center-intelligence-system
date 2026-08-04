@@ -170,15 +170,46 @@ def get_analysis(stt_output: dict) -> dict:
     if not transcript_text:
         logger.warning("Empty transcription — skipping analysis")
         return dict(_DEFAULT_RESULT)
+
+    # 1. Retrieve relevant company policies from Pinecone using RAG
+    policy_context = ""
+    try:
+        from services.retrieval.rag_module import retrieve_context
+        # Use transcript text to find matching policy rules
+        policy_context = retrieve_context(transcript_text)
+        if policy_context:
+            logger.info("RAG successfully retrieved relevant policy context.")
+            print("\n" + "="*50)
+            print("[RAG SUCCESS] Pinecone'dan İlgili Şirket Politikaları Çekildi:")
+            print(policy_context)
+            print("="*50 + "\n")
+        else:
+            logger.warning("RAG retrieved empty context.")
+            print("\n[RAG WARNING] Pinecone'dan eşleşen bir politika bulunamadı.\n")
+    except Exception as e:
+        logger.error("Failed to retrieve RAG context: %s", e)
+        print(f"\n[RAG ERROR] Pinecone araması sırasında hata oluştu: {e}\n")
+
     instruction = (
         "Sen profesyonel bir çağrı merkezi kalite analisti yapay zekasın. "
-        "Aşağıdaki saniye ve ses desibeli (dB) verileriyle verilmiş çağrı dökümünü analiz et."
+        "Aşağıdaki saniye ve ses desibeli (dB) verileriyle verilmiş çağrı dökümünü analiz et. "
+        "Eğer varsa aşağıda verilen şirket politikalarını ve kurallarını referans alarak analizi gerçekleştir."
     )
-    prompt = (
-        f"### Talimat:\n{instruction}\n\n"
-        f"### Giriş:\n{transcript_text}\n\n"
-        f"### Yanıt:\n"
-    )
+
+    if policy_context:
+        prompt = (
+            f"### Şirket Politikaları ve Kuralları:\n{policy_context}\n\n"
+            f"### Talimat:\n{instruction}\n\n"
+            f"### Giriş:\n{transcript_text}\n\n"
+            f"### Yanıt:\n"
+        )
+    else:
+        prompt = (
+            f"### Talimat:\n{instruction}\n\n"
+            f"### Giriş:\n{transcript_text}\n\n"
+            f"### Yanıt:\n"
+        )
+
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
     with torch.no_grad():
         outputs = model.generate(
@@ -186,6 +217,7 @@ def get_analysis(stt_output: dict) -> dict:
             max_new_tokens=512,
             temperature=0.1,
             do_sample=True,
+            repetition_penalty=1.2,
             eos_token_id=tokenizer.eos_token_id,
         )
     response_text = tokenizer.decode(
