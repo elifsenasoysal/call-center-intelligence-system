@@ -198,9 +198,12 @@ def get_analysis(stt_output: dict) -> dict:
 
     if policy_context:
         prompt = (
-            f"### Şirket Politikaları ve Kuralları:\n{policy_context}\n\n"
             f"### Talimat:\n{instruction}\n\n"
-            f"### Giriş:\n{transcript_text}\n\n"
+            f"### Giriş:\n"
+            f"[Şirket Politikaları ve Kuralları]\n"
+            f"{policy_context}\n\n"
+            f"[Çağrı Dökümü]\n"
+            f"{transcript_text}\n\n"
             f"### Yanıt:\n"
         )
     else:
