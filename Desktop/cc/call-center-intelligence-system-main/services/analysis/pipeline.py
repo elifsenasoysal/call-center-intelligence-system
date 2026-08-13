@@ -175,8 +175,15 @@ def get_analysis(stt_output: dict) -> dict:
     policy_context = ""
     try:
         from services.retrieval.rag_module import retrieve_context
-        # Use transcript text to find matching policy rules
-        policy_context = retrieve_context(transcript_text)
+        
+        # Use only customer utterances for the RAG query to improve semantic matching
+        # and prevent embedding truncation.
+        customer_lines = [u for u in stt_output.get("utterances", []) if u.get("speaker") == "customer"]
+        query = " ".join([u.get("text", "") for u in customer_lines])[:400]
+        if not query.strip():
+            query = transcript_text[:400] # Fallback if no customer utterances
+            
+        policy_context = retrieve_context(query)
         if policy_context:
             logger.info("RAG successfully retrieved relevant policy context.")
             print("\n" + "="*50)
