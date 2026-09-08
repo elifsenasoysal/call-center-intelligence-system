@@ -195,7 +195,10 @@ def get_analysis(stt_output: dict) -> dict:
             print("\n[RAG WARNING] Pinecone'dan eşleşen bir politika bulunamadı.\n")
     except Exception as e:
         logger.error("Failed to retrieve RAG context: %s", e)
-        print(f"\n[RAG ERROR] Pinecone araması sırasında hata oluştu: {e}\n")
+        print("\n" + "!" * 60)
+        print(f"[RAG ERROR] Pinecone araması sırasında hata oluştu:\n  >> {e}")
+        print("[RAG HINT] Lütfen .env dosyanızdaki PINECONE_API_KEY ve PINECONE_INDEX_NAME değerlerini kontrol edin.")
+        print("!" * 60 + "\n")
 
     instruction = (
         "Sen profesyonel bir çağrı merkezi kalite analisti yapay zekasın. "
@@ -225,8 +228,7 @@ def get_analysis(stt_output: dict) -> dict:
         outputs = model.generate(
             **inputs,
             max_new_tokens=512,
-            temperature=0.1,
-            do_sample=True,
+            do_sample=False,
             repetition_penalty=1.2,
             eos_token_id=tokenizer.eos_token_id,
         )

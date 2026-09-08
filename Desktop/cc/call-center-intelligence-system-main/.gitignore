@@ -1,28 +1,52 @@
+# Environment variables
 .env
+.env.local
 
+# Python artifacts
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual Environments
 .venv/
 venv/
-*.egg-info/
+ENV/
+env/
 
-data/raw/
-data/processed/
+# Data & Audio files (raw and processed)
+data/raw/*
 !data/raw/.gitkeep
+data/processed/*
 !data/processed/.gitkeep
 *.wav
 *.mp3
+*.mp4
+*.m4a
+*.ogg
+*.flac
+
+# PyTorch & Model weights / checkpoints
 *.pt
 *.bin
+*.safetensors
+services/analysis/training/outputs/
+models/llama3.2_3b_callcenter_model/checkpoint-*/
 
+# IDE & Editor configs
 .vscode/
 .idea/
+pyrefly.toml
+replacements.txt
 
+# OS-generated files
 .DS_Store
 Thumbs.db
+desktop.ini
 
+# Jupyter Notebooks
 .ipynb_checkpoints/
-
-# Training outputs (checkpoints)
-services/analysis/training/outputs/

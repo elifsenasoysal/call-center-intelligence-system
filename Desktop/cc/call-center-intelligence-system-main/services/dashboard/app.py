@@ -52,6 +52,20 @@ st.sidebar.info("Lütfen analiz etmek istediğiniz müşteri görüşmesi ses ka
 
 uploaded_file = st.sidebar.file_uploader("Ses Dosyası Yükle", type=["wav", "mp3", "m4a", "ogg", "flac", "mp4"])
 
+# RAG / Şirket Politikaları Yönetimi
+st.sidebar.divider()
+st.sidebar.subheader("📚 Şirket Politikaları (RAG)")
+if st.sidebar.button("🔄 Politikaları Pinecone'a İndeksle"):
+    with st.sidebar.status("İndeksleniyor...", expanded=True) as status:
+        try:
+            from services.retrieval.rag_module import index_policies
+            index_policies()
+            status.update(label="İndeksleme Tamamlandı! ✅", state="complete", expanded=False)
+            st.sidebar.success("Politikalar Pinecone'a başarıyla yüklendi!")
+        except Exception as e:
+            status.update(label="Hata Oluştu! ❌", state="error", expanded=True)
+            st.sidebar.error(f"Hata: {e}")
+
 if uploaded_file is not None:
     st.sidebar.success("Dosya başarıyla yüklendi!")
     st.audio(uploaded_file)

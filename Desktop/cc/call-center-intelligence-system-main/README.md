@@ -185,6 +185,8 @@ Bu proje iki farklı model için HuggingFace erişim token'ına ihtiyaç duyar. 
 # .env dosyası
 HUGGINGFACE_TOKEN=hf_sizin_tokeniniz_buraya_gelecek
 WHISPER_MODEL_SIZE=large-v3
+PINECONE_API_KEY=pcsk_sizin_pinecone_anahtariniz
+PINECONE_INDEX_NAME=call-center-policies
 ```
 
 > **ÖNEMLİ:** Token'ınızın aşağıdaki **tüm** model sayfalarındaki "Kullanım Şartları"nı (Terms of Use) onaylamış olması gerekmektedir:
@@ -197,6 +199,17 @@ WHISPER_MODEL_SIZE=large-v3
 > - [meta-llama/Llama-3.2-3B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct)
 >
 > Bu onaylar yapılmadan uygulama başlatıldığında model indirme adımında yetkilendirme hatası alırsınız.
+
+---
+
+### 5. Şirket Politikalarını İndeksleme (RAG Kurulumu)
+
+Analiz sırasında müşteri temsilcisinin şirket kurallarına uyup uymadığının denetlenebilmesi için şirket politikalarının Pinecone vektör veri tabanına yüklenmesi gerekir:
+
+```bash
+python services/retrieval/rag_module.py
+```
+*(Not: İndeks boş bırakılsa bile sistem ilk analizde otomatik tespit edip kendini indeksler veya Streamlit arayüzünün sol panelindeki **"🔄 Politikaları Pinecone'a İndeksle"** butonu üzerinden tek tıkla indeksleme yapılabilir).*
 
 ---
 
